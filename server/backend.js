@@ -85,7 +85,7 @@ const CONFIG = {
   port: Number.parseInt(process.env.PORT) || 3001,
   host: process.env.HOST || (env.behindProxy ? "127.0.0.1" : "0.0.0.0"),
 
-  publicUrl: process.env.PUBLIC_URL || "https://limoonfn.cloud/drawly/api",
+  publicUrl: process.env.PUBLIC_URL || "https://limoon-space.cloud/drawly/api",
   basePath: process.env.BASE_PATH || "/drawly/api",
 
   ssl: {
@@ -97,7 +97,7 @@ const CONFIG = {
   security: {
     allowedOrigins: process.env.ALLOWED_ORIGINS
       ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
-      : ["https://limoonfn.cloud", "https://drawly.app", "http://localhost:3000"],
+      : ["https://limoon-space.cloud", "https://drawly.app", "http://localhost:3000"],
 
     rateLimit: {
       connectionsPerMinute: Number.parseInt(process.env.RATE_LIMIT_CONNECTIONS) || 15,
