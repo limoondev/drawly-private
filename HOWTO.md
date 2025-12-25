@@ -6,13 +6,13 @@
 
 Le fichier backend se trouve dans `server/backend.js`. Pour le demarrer:
 
-```bash
+\`\`\`bash
 # Installation des dependances
 npm install express socket.io cors better-sqlite3 bcryptjs uuid
 
 # Demarrer le serveur
 node server/backend.js
-```
+\`\`\`
 
 Le serveur demarre sur le port 3001 par defaut (ou la variable d'environnement PORT).
 
@@ -29,12 +29,12 @@ L'URL est sauvegardee dans Supabase et partagee entre toutes les instances du si
 
 Dans Vercel ou votre fichier `.env.local`:
 
-```env
+\`\`\`env
 # Supabase (obligatoire)
 NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxx
 SUPABASE_SERVICE_ROLE_KEY=eyJxxx  # Important pour sauvegarder la config!
-```
+\`\`\`
 
 ### 4. Table Supabase requise
 

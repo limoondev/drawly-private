@@ -17,7 +17,7 @@ Ce guide explique comment deployer le backend sur un VPS avec le domaine `https:
 
 ## 2. Installation Backend
 
-```bash
+\`\`\`bash
 # Cloner le projet
 git clone https://github.com/votre-repo/drawly.git
 cd drawly
@@ -27,7 +27,7 @@ npm install
 
 # Creer le dossier data
 mkdir -p data
-```
+\`\`\`
 
 ---
 
@@ -35,7 +35,7 @@ mkdir -p data
 
 Creer `/etc/nginx/sites-available/limoonfn.cloud`:
 
-```nginx
+\`\`\`nginx
 server {
     listen 80;
     server_name limoonfn.cloud;
@@ -86,23 +86,23 @@ server {
         proxy_set_header Host $host;
     }
 }
-```
+\`\`\`
 
 Activer le site:
-```bash
+\`\`\`bash
 sudo ln -s /etc/nginx/sites-available/limoonfn.cloud /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
-```
+\`\`\`
 
 ---
 
 ## 4. SSL avec Certbot
 
-```bash
+\`\`\`bash
 sudo apt install certbot python3-certbot-nginx
 sudo certbot --nginx -d limoonfn.cloud
-```
+\`\`\`
 
 ---
 
@@ -110,7 +110,7 @@ sudo certbot --nginx -d limoonfn.cloud
 
 ### Option A: PM2 (Recommande)
 
-```bash
+\`\`\`bash
 npm install -g pm2
 
 # Demarrer
@@ -122,13 +122,13 @@ pm2 save
 
 # Voir les logs
 pm2 logs drawly
-```
+\`\`\`
 
 ### Option B: Systemd
 
 Creer `/etc/systemd/system/drawly.service`:
 
-```ini
+\`\`\`ini
 [Unit]
 Description=Drawly Backend
 After=network.target
@@ -148,13 +148,13 @@ Environment=ALLOWED_ORIGINS=https://limoonfn.cloud,https://drawly.app
 
 [Install]
 WantedBy=multi-user.target
-```
+\`\`\`
 
-```bash
+\`\`\`bash
 sudo systemctl daemon-reload
 sudo systemctl enable drawly
 sudo systemctl start drawly
-```
+\`\`\`
 
 ---
 
@@ -176,9 +176,9 @@ Le backend s'auto-configure, mais vous pouvez personnaliser:
 
 Dans le frontend (Vercel ou autre), configurer:
 
-```env
+\`\`\`env
 NEXT_PUBLIC_BACKEND_URL=https://limoonfn.cloud/drawly/api
-```
+\`\`\`
 
 Ou dans Supabase `global_config`:
 - `backend_url`: `https://limoonfn.cloud/drawly/api`
@@ -187,39 +187,39 @@ Ou dans Supabase `global_config`:
 
 ## 8. Verification
 
-```bash
+\`\`\`bash
 # Tester l'API
 curl https://limoonfn.cloud/drawly/api/status
 
 # Doit retourner:
 # {"status":"ok","version":"5.2.0",...}
-```
+\`\`\`
 
 ---
 
 ## 9. Maintenance
 
 ### Voir les logs
-```bash
+\`\`\`bash
 pm2 logs drawly
 # ou
 journalctl -u drawly -f
-```
+\`\`\`
 
 ### Redemarrer
-```bash
+\`\`\`bash
 pm2 restart drawly
 # ou
 sudo systemctl restart drawly
-```
+\`\`\`
 
 ### Mettre a jour
-```bash
+\`\`\`bash
 cd /var/www/drawly
 git pull
 npm install
 pm2 restart drawly
-```
+\`\`\`
 
 ---
 
